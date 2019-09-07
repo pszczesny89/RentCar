@@ -8,6 +8,8 @@ import pl.sda.rentcar.entity.CarEntity;
 import pl.sda.rentcar.repository.CarRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -19,11 +21,33 @@ public class CarService {
         this.repository = repository;
     }
 
+    public CarDTO add(CarDTO carDTO) {
+        CarEntity entity = mapToEntity(carDTO);
+        repository.save(entity);
+        return mapToDTO(entity);
+    }
+
+    public List<CarDTO> getAll() {
+        return repository.findAll()
+                .stream()
+                .map(e -> new CarDTO(e.getId(), e.getBrand(), e.getModel(), e.getRegistration(), e.getMileage(), e.isAvailable()))
+                .collect(Collectors.toList());
+    }
+
+    public CarDTO getOne(Long id) {
+        return mapToDTO(repository.getById(id));
+    }
+
+    public void removeCar(Long id) {
+        repository.deleteById(id);
+    }
+
     private CarDTO mapToDTO(CarEntity carEntity) {
         return new CarDTO(
                 carEntity.getId(),
                 carEntity.getBrand(),
                 carEntity.getModel(),
+                carEntity.getRegistration(),
                 carEntity.getMileage(),
                 carEntity.isAvailable()
         );
@@ -34,6 +58,7 @@ public class CarService {
                 carDTO.getId(),
                 carDTO.getBrand(),
                 carDTO.getModel(),
+                carDTO.getRegistration(),
                 carDTO.getMileage(),
                 carDTO.isAvailable()
         );

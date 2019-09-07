@@ -12,9 +12,9 @@ public class CarDTO {
     private Long id;
     private String brand;
     private String model;
+    private String registration;
     private Long mileage;
     private boolean isAvailable;
-
 }
 
 
