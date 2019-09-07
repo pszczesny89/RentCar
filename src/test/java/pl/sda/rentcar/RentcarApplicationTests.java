@@ -42,7 +42,7 @@ public class RentcarApplicationTests {
     }
 
     @Test
-    public void addCarTest() throws Exception {
+    public void getAllCarsTest() throws Exception {
         when(service.getAll()).thenReturn(Arrays.asList(new CarDTO(1L, "Skoda", "Fabia", "CDE 3456", 123000L, true),
                 new CarDTO(5L, "Mercedes", "S", "NJD 7658", 612300L, false)));
 
@@ -60,8 +60,22 @@ public class RentcarApplicationTests {
     }
 
     @Test
-    public void RemoveCarTest() throws Exception {
+    public void getOneCarTest() throws Exception {
+        when(service.getOne(13l)).thenReturn(new CarDTO(13L, "Skoda", "Fabia", "CDE 3456", 123000L, true));
 
+        mockMvc.perform(get("/cars/13"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(13L))
+                .andExpect(jsonPath("$.brand").value("Skoda"))
+                .andExpect(jsonPath("$.model").value("Fabia"))
+                .andExpect(jsonPath("$.registration").value("CDE 3456"))
+                .andExpect(jsonPath("$.mileage").value(123000L))
+                .andExpect(jsonPath("$.available").value(true));
+    }
+
+    @Test
+    public void RemoveCarTest() throws Exception {
         mockMvc.perform(delete("/cars/13"));
         verify(service).removeCar(13L);
     }
