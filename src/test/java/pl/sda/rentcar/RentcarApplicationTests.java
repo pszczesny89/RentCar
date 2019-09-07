@@ -3,10 +3,9 @@ package pl.sda.rentcar;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -17,9 +16,10 @@ import pl.sda.rentcar.service.CarService;
 
 import java.util.Arrays;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -32,6 +32,8 @@ public class RentcarApplicationTests {
     private CarService service;
     @Mock
     private CarRepository repository;
+    @Captor
+    private ArgumentCaptor<CarDTO> carCaptor;
 
     @Before
     public void setUp() throws Exception {
@@ -75,13 +77,25 @@ public class RentcarApplicationTests {
     }
 
     @Test
+    public void addEmployeeToService() throws Exception {
+        mockMvc.perform(put("/cars")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content("{\"brand\": \"Skoda\", \"model\": \"Fabia\", \"registration\": \"CDE 3456\", \"mileage\": 12000, \"available\": true}"))
+                .andDo(print())
+                .andExpect(status().isOk());
+
+        verify(service).add(carCaptor.capture());
+        assertEquals("Skoda", carCaptor.getValue().getBrand());
+        assertEquals("Fabia", carCaptor.getValue().getModel());
+        assertEquals("CDE 3456", carCaptor.getValue().getRegistration());
+        assertEquals("CDE 3456", carCaptor.getValue().getRegistration());
+        assertEquals(Long.valueOf(12000), carCaptor.getValue().getMileage());
+        assertTrue(carCaptor.getValue().isAvailable());
+    }
+
+    @Test
     public void RemoveCarTest() throws Exception {
         mockMvc.perform(delete("/cars/13"));
         verify(service).removeCar(13L);
     }
-
-
-
-
-
 }
