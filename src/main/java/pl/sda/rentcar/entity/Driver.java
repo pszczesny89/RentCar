@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Builder
 @Data
-public class Drivers {
+public class Driver {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
