@@ -7,6 +7,8 @@ import pl.sda.rentcar.entity.Driver;
 import pl.sda.rentcar.repository.DriverRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -37,5 +39,14 @@ public class DriverService {
                 .name(dto.getName())
                 .surname(dto.getSurname())
                 .build();
+    }
+
+    @Transactional
+    public List<DriverDTO> getAll(){
+    return driverRepository.findAll()
+            .stream()
+            .map(e->{return new DriverDTO(e.getId(), e.getName(), e.getSurname());
+            })
+            .collect(Collectors.toList());
     }
 }

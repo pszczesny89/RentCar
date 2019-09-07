@@ -1,13 +1,12 @@
 package pl.sda.rentcar.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.sda.rentcar.dtos.DriverDTO;
 import pl.sda.rentcar.entity.Driver;
 import pl.sda.rentcar.service.DriverService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/drivers")
@@ -18,4 +17,7 @@ public class DriverController {
 
     @PostMapping
     public Driver add(@RequestBody DriverDTO dto) {return driverService.save(dto);}
+
+    @GetMapping
+    public List<DriverDTO> getAll() {return driverService.getAll();}
 }
