@@ -25,4 +25,8 @@ public class DriverController {
     public Driver getOne(@PathVariable("id") Long id){
     return driverService.getOne(id);
     }
+
+    @DeleteMapping("/{id}")
+    public void remove(@PathVariable("id") Long id){driverService.remove(id);}
+
 }

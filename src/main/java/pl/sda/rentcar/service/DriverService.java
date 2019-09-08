@@ -17,7 +17,7 @@ public class DriverService {
     private final DriverRepository driverRepository;
 
     @Transactional
-    public Driver save(DriverDTO dto){
+    public Driver save(DriverDTO dto) {
         Driver entity = toEntity(dto);
 
         entity = driverRepository.save(entity);
@@ -42,19 +42,25 @@ public class DriverService {
     }
 
     @Transactional
-    public List<DriverDTO> getAll(){
-    return driverRepository.findAll()
-            .stream()
-            .map(e->{return new DriverDTO(e.getId(), e.getName(), e.getSurname());
-            })
-            .collect(Collectors.toList());
+    public List<DriverDTO> getAll() {
+        return driverRepository.findAll()
+                .stream()
+                .map(e -> {
+                    return new DriverDTO(e.getId(), e.getName(), e.getSurname());
+                })
+                .collect(Collectors.toList());
     }
 
     @Transactional
     public Driver getOne(Long id) {
         return driverRepository.findById(id)
-                .map(e-> toDTO(e))
+                .map(e -> toDTO(e))
                 .orElse(null);
+    }
+
+    @Transactional
+    public void remove(Long id) {
+        driverRepository.deleteById(id);
     }
 
 }
