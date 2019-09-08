@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of cars</title>
+<!--    <link rel="stylesheet" href="style.css" type="text/css"/>-->
+    <style>
+        h3 {
+            padding: 5px;
+        }
+        table, td, th {
+            padding: 5px;
+            border-collapse: collapse;
+            text-align: center;
+            border: 1px solid black;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        body {
+            font-family: Verdana, serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h3>Lista naszych wszystkich samochodów:</h3>
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Registration</th>
+            <th>Mileage</th>
+            <th>Availability</th>
+        </thead>
+        <tbody>
+            <tr th:each="car : ${cars}">
+                <td><span th:text="${car.id}"/></td>
+                <td><span th:text="${car.brand}"/></td>
+                <td><span th:text="${car.model}"/></td>
+                <td><span th:text="${car.registration}"/></td>
+                <td><span th:text="${car.mileage}"/></td>
+                <td><span th:text="${car.available}"/></td>
+                <td th:switch="${car.available}? ${true} : ${false}">
+                    <input th:case="${false}" class="btn" type="button" value="Zwróć samochód">
+                    <a th:case="${true}" href="/hire/create"><input class="btn" type="button" value="Wypożycz samochód"></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button><a href="/">Wróć do strony głównej</a></button>
+</body>
+</html>

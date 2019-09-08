@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodawanie samochodu</title>
+    <style>
+        h3 {
+            padding: 5px;
+        }
+        table, td, th {
+            padding: 5px;
+            border-collapse: collapse;
+            text-align: center;
+            border: 1px solid black;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        body {
+            font-family: Verdana, serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h3>Dodaj nowy samochód do bazy!</h3>
+    <form th:action="@{/cars/create}" method="POST" th:object="${car}">
+        <table>
+            <!--            <tr><td></td><td><input type="hidden" id="id" name="id" th:value="${car.id}"/></td></tr>-->
+            <tr><td>Marka:</td><td><input type="text" id="brand" name="brand" th:value="${car.brand}"/></td></tr>
+            <tr><td>Model:</td><td><input type="text" id="model" name="model" th:value="${car.model}"/></td></tr>
+            <tr><td>Rejestracja:</td><td><input type="text" id="registration" name="registration" th:value="${car.registration}"/></td></tr>
+            <tr><td>Przebieg:</td><td><input type="text" id="mileage" name="mileage" th:value="${car.mileage}"/></td></tr>
+            <tr><td>Dostępność:</td><td><input type="text" id="available" name="available" th:value="${car.available}"/></td></tr>
+            <tr><td></td><td> <button type="submit">Zatwierdź</button></td></tr>
+        </table>
+    </form>
+    </br>
+    <button><a href="/">Wróć do strony głównej</a></button>
+</body>
+</html>

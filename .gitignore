@@ -30,4 +30,5 @@ out/
 
 ### VS Code ###
 .vscode/
-.*ext.properties2
+
+.*-ext.properties
