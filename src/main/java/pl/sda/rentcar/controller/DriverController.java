@@ -8,8 +8,8 @@ import pl.sda.rentcar.service.DriverService;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/drivers")
+
+@RequestMapping("/driver")
 @RequiredArgsConstructor
 public class DriverController {
 
