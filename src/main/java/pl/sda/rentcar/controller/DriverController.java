@@ -20,4 +20,9 @@ public class DriverController {
 
     @GetMapping
     public List<DriverDTO> getAll() {return driverService.getAll();}
+
+    @GetMapping("/{id}")
+    public Driver getOne(@PathVariable("id") Long id){
+    return driverService.getOne(id);
+    }
 }

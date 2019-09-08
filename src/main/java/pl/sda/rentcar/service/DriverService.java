@@ -49,4 +49,12 @@ public class DriverService {
             })
             .collect(Collectors.toList());
     }
+
+    @Transactional
+    public Driver getOne(Long id) {
+        return driverRepository.findById(id)
+                .map(e-> toDTO(e))
+                .orElse(null);
+    }
+
 }
