@@ -39,5 +39,4 @@ public class CarListController {
         carService.add(dto);
         return "redirect:/";
     }
-
 }

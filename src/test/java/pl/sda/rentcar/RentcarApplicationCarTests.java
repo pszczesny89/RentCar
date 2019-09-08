@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 //@RunWith(SpringRunner.class)
 //@SpringBootTest
-public class RentcarApplicationTests {
+public class RentcarApplicationCarTests {
     private MockMvc mockMvc;
     @Mock
     private CarService service;

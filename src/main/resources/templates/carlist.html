@@ -43,7 +43,7 @@
                 <td><span th:text="${car.available}"/></td>
                 <td th:switch="${car.available}? ${true} : ${false}">
                     <input th:case="${false}" class="btn" type="button" value="Zwróć samochód">
-                    <input th:case="${true}" class="btn" type="button" value="Wypożycz samochód">
+                    <a th:case="${true}" href="/hire/create"><input class="btn" type="button" value="Wypożycz samochód"></a>
                 </td>
             </tr>
         </tbody>
