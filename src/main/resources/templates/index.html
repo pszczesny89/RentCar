@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wypożyczalnia samochodów</title>
+    <style>
+        h3 {
+            padding: 5px;
+        }
+        table, td, th {
+            padding: 5px;
+            border-collapse: collapse;
+            text-align: center;
+            border: 1px solid black;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        body {
+            font-family: Verdana, serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Witamy w naszej wypożyczalni samochodów!</h2>
+    <a th:href="@{/cars/list}">Przejdz do listy naszych samochodów</a></br>
+    <a th:href="@{/cars/create}">Utworz nowy samochód</a>
+</body>
+</html>
