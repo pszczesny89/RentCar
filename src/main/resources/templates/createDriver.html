@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RentCar</title>
+</head>
+<body>
+
+<form th:action="@{/driver/create}" method="POST" th:object="${driver}">
+    <table>
+        <tr>Formularz tworzenia nowego użytkownika (kierowcy)</tr>
+        <tr><td></td><td><input type="hidden" id="id" name="id" th:value="${driver.id}"/></td></tr>
+        <tr><td>Imię:</td><td><input type="text" id="name" name="name" th:value="${driver.name}"/></td></tr>
+        <tr><td>Nazwisko:</td><td><input type="text" id="surname" name="surname" th:value="${driver.surname}"/></td></tr>
+        </td></tr>
+
+        <tr><td></td><td> <button type="submit">Utwórz</button></td></tr>
+    </table>
+
+    <button><a href="/driver/">Wróć do strony głównej</a></button>
+</form>
+
+</body>
+</html>
