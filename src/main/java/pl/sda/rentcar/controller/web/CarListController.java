@@ -5,13 +5,12 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.rentcar.dtos.CarDTO;
 import pl.sda.rentcar.service.CarService;
+
+import java.util.Date;
 
 @Controller
 @RequestMapping("/cars")
@@ -38,5 +37,12 @@ public class CarListController {
     String createCar(CarDTO dto) {
         carService.add(dto);
         return "redirect:/";
+    }
+
+    @RequestMapping("/car/{id}")
+    ModelAndView getCar(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("/car.html");
+        modelAndView.addObject("car", carService.getOne(id));
+        return modelAndView;
     }
 }

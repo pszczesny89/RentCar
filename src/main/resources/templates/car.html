@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car</title>
+    <style>
+        h3 {
+            padding: 5px;
+        }
+        table, td, th {
+            padding: 5px;
+            border-collapse: collapse;
+            text-align: center;
+            border: 1px solid black;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        body {
+            font-family: Verdana, serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h3>A car you have chosen: </h3>
+    <table>
+        <tr>
+            <th>Id</th>
+            <td><span th:text="${car.id}"/></td>
+        </tr>
+        <tr>
+            <th>Brand</th>
+            <td><span th:text="${car.brand}"/></td>
+        </tr>
+        <tr>
+            <th>Model</th>
+            <td><span th:text="${car.model}"/></td>
+        </tr>
+        <tr>
+            <th>Registration number</th>
+            <td><span th:text="${car.registration}"/></td>
+        </tr>
+        <tr>
+            <th>Mileage</th>
+            <td><span th:text="${car.mileage}"/></td>
+        </tr>
+        <tr>
+            <th>Availability</th>
+            <td><span th:text="${car.available}"/></td>
+        </tr>
+    </table>
+    <a href="/cars/list"><input type="button" value="Come back to car list"/></a>
+</body>
+</html>

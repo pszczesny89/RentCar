@@ -3,22 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>RentCar</title>
+    <style>
+        h3 {
+            padding: 5px;
+        }
+        table, td, th {
+            padding: 5px;
+            border-collapse: collapse;
+            text-align: center;
+            border: 1px solid black;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        body {
+            font-family: Verdana, serif;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
 <form th:action="@{/driver/create}" method="POST" th:object="${driver}">
     <table>
-        <tr>Formularz tworzenia nowego użytkownika (kierowcy)</tr>
-        <tr><td></td><td><input type="hidden" id="id" name="id" th:value="${driver.id}"/></td></tr>
-        <tr><td>Imię:</td><td><input type="text" id="name" name="name" th:value="${driver.name}"/></td></tr>
-        <tr><td>Nazwisko:</td><td><input type="text" id="surname" name="surname" th:value="${driver.surname}"/></td></tr>
+        <tr>Form to create a new driver:</tr>
+        <!--<tr><td></td><td><input type="hidden" id="id" name="id" th:value="${driver.id}"/></td></tr>-->
+        <tr><td>Name:</td><td><input type="text" id="name" name="name" th:value="${driver.name}"/></td></tr>
+        <tr><td>Last Name:</td><td><input type="text" id="surname" name="surname" th:value="${driver.surname}"/></td></tr>
         </td></tr>
 
-        <tr><td></td><td> <button type="submit">Utwórz</button></td></tr>
+        <tr><td></td><td> <button type="submit">Create driver</button></td></tr>
     </table>
-
-    <button><a href="/driver/">Wróć do strony głównej</a></button>
+    <a href="/"><input type="button" value="Come back to our main page"></a>
 </form>
-
 </body>
 </html>

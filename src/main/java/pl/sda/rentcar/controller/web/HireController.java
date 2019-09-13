@@ -3,18 +3,25 @@ package pl.sda.rentcar.controller.web;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.rentcar.dtos.HireDTO;
+import pl.sda.rentcar.repository.HireRepository;
 import pl.sda.rentcar.service.HireService;
 
-@Controller
+import java.util.List;
+
+@RestController
 @RequestMapping("/hire")
 @RequiredArgsConstructor
 public class HireController {
     private final HireService service;
+    private final HireRepository repository;
+
+    @GetMapping
+    public List<HireDTO> getAll() {
+        return service.getAll();
+    }
 
     @GetMapping("/create")
     ModelAndView createCarView() {
