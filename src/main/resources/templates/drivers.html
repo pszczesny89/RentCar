@@ -3,25 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Users</title>
-
-    <style>
-        h3 {
-            padding: 5px;
-        }
-        table, td, th {
-            padding: 5px;
-            border-collapse: collapse;
-            text-align: center;
-            border: 1px solid black;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        body {
-            font-family: Verdana, serif;
-            text-align: center;
-        }
-    </style>
-
+    <link rel="stylesheet" href="../static/style.css" type="text/css"/>
 </head>
 <body>
 <table>
@@ -30,6 +12,7 @@
         <th>Id</th>
         <th>Name</th>
         <th>Last Name</th>
+        <th>E-mail</th>
         <th colspan="2">Options</th>
     </b></tr>
     </thead>
@@ -38,6 +21,7 @@
         <td align="center", width="30px"><span th:text="${driver.id}"/></td>
         <td align="center", width="100px"><span th:text="${driver.name}"/></td>
         <td align="center", width="200px"><span th:text="${driver.surname}"/></td>
+        <td align="center", width="200px"><span th:text="${driver.email}"/></td>
 
         <td class="option"><a th:href="@{../edit?id=} + ${driver.id}">Edit</a></td>
         <td class="option"><a th:href="@{../delete?id=} + ${driver.id}">Delete</a></td>

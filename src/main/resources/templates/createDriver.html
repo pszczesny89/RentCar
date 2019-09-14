@@ -3,23 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>RentCar</title>
-    <style>
-        h3 {
-            padding: 5px;
-        }
-        table, td, th {
-            padding: 5px;
-            border-collapse: collapse;
-            text-align: center;
-            border: 1px solid black;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        body {
-            font-family: Verdana, serif;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="../static/style.css" type="text/css"/>
 </head>
 <body>
 
@@ -29,6 +13,8 @@
         <!--<tr><td></td><td><input type="hidden" id="id" name="id" th:value="${driver.id}"/></td></tr>-->
         <tr><td>Name:</td><td><input type="text" id="name" name="name" th:value="${driver.name}"/></td></tr>
         <tr><td>Last Name:</td><td><input type="text" id="surname" name="surname" th:value="${driver.surname}"/></td></tr>
+        <tr><td>E-mail:</td><td><input type="text" id="email" name="email" th:value="${driver.email}"/></td></tr>
+        <tr><td>Password:</td><td><input type="password" id="pasword" name="password" th:value="${driver.password}"/></td></tr>
         </td></tr>
 
         <tr><td></td><td> <button type="submit">Create driver</button></td></tr>

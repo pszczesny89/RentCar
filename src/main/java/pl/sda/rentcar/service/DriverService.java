@@ -30,6 +30,8 @@ public class DriverService {
                 .id(entity.getId())
                 .name(entity.getName())
                 .surname(entity.getSurname())
+                .email(entity.getEmail())
+                .password(entity.getPassword())
                 .build();
     }
 
@@ -38,6 +40,8 @@ public class DriverService {
                 .id(dto.getId())
                 .name(dto.getName())
                 .surname(dto.getSurname())
+                .email(dto.getEmail())
+                .password(dto.getPassword())
                 .build();
     }
 
@@ -46,7 +50,7 @@ public class DriverService {
         return driverRepository.findAll()
                 .stream()
                 .map(e -> {
-                    return new DriverDTO(e.getId(), e.getName(), e.getSurname());
+                    return new DriverDTO(e.getId(), e.getName(), e.getSurname(), e.getEmail(), e.getPassword());
                 })
                 .collect(Collectors.toList());
     }

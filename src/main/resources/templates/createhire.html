@@ -3,23 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Wypożycz samochód!</title>
-    <style>
-        h3 {
-            padding: 5px;
-        }
-        table, td, th {
-            padding: 5px;
-            border-collapse: collapse;
-            text-align: center;
-            border: 1px solid black;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        body {
-            font-family: Verdana, serif;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="../static/style.css" type="text/css"/>
 </head>
 <body>
     <h3>Add a new hire!</h3>
@@ -28,8 +12,8 @@
             <!--            <tr><td></td><td><input type="hidden" id="id" name="id" th:value="${car.id}"/></td></tr>-->
             <tr><td>Car ID:</td><td><input type="text" id="carId" name="carId" th:value="${hire.carId}"/></td></tr>
             <tr><td>Driver ID:</td><td><input type="text" id="driverId" name="driverId" th:value="${hire.driverId}"/></td></tr>
-            <tr><td>Date of rental:</td><td><input type="date" id="hireDate" name="hireDate" th:value="${hire.hireDate}"/></td></tr>
-            <tr><td>Date of return:</td><td><input type="date" id="returnDate" name="returnDate" th:value="${hire.returnDate}"/></td></tr>
+            <tr><td>Date of rental:</td><td><input type="date" id="hireDate" name="hireDate" th:value="${LocalDate.parse(hire.hireDate)}"/></td></tr>
+            <tr><td>Date of return:</td><td><input type="date" id="returnDate" name="returnDate" th:value="${LocalDate.parse(hire.returnDate)}"/></td></tr>
             <tr><td>Expected mileage:</td><td><input type="text" id="mileage" name="mileage" th:value="${hire.mileage}"/></td></tr>
             <tr><td></td><td> <button type="submit">Approve</button></td></tr>
         </table>
