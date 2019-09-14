@@ -21,12 +21,12 @@ public class CarController {
         this.repository = repository;
     }
 
-    @PutMapping
+    @PutMapping()
     public CarDTO add(@RequestBody CarDTO dto) {
         return service.add(dto);
     }
 
-    @GetMapping
+    @GetMapping()
     public List<CarDTO> getAll() {
         return service.getAll();
     }

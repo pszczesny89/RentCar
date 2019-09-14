@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Controller
 public class MainViewController {
-    @RequestMapping
+    @RequestMapping("/")
     ModelAndView mainView() {
         ModelAndView mav = new ModelAndView("index.html");
         return mav;
