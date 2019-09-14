@@ -23,8 +23,8 @@
         <td align="center", width="200px"><span th:text="${driver.surname}"/></td>
         <td align="center", width="200px"><span th:text="${driver.email}"/></td>
 
-        <td class="option"><a th:href="@{../edit?id=} + ${driver.id}">Edit</a></td>
-        <td class="option"><a th:href="@{../delete?id=} + ${driver.id}">Delete</a></td>
+        <td class="option"><a th:href="@{/driver/edit?id=} + ${driver.id}">Edit</a></td>
+        <td class="option"><a th:href="@{/driver/delete?id=} + ${driver.id}">Delete</a></td>
     </tr>
     </tbody>
 </table>

@@ -25,6 +25,20 @@ public class DriverService {
         return toDTO(entity);
     }
 
+    @Transactional
+    public void createOrUpdate(DriverDTO dto){
+    Driver driver = Driver.builder()
+            .id(dto.getId())
+            .name(dto.getName())
+            .surname(dto.getSurname())
+            .email(dto.getEmail())
+            .password(dto.getPassword())
+            .build();
+
+    driverRepository.save(driver);
+
+    }
+
     private Driver toDTO(Driver entity) {
         return Driver.builder()
                 .id(entity.getId())
