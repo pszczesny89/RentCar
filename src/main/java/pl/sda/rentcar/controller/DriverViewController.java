@@ -38,7 +38,6 @@ public class DriverViewController {
     @GetMapping("/delete")
     String deleteDriver(@RequestParam Long id) {
         driverService.remove(id);
-
         return "redirect:/driver";
     }
 }
