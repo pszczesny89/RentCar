@@ -12,5 +12,4 @@ public class RentcarApplication {
     public static void main(String[] args) {
         SpringApplication.run(RentcarApplication.class, args);
     }
-
 }
