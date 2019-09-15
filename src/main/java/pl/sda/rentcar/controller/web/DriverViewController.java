@@ -1,4 +1,4 @@
-package pl.sda.rentcar.controller;
+package pl.sda.rentcar.controller.web;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;

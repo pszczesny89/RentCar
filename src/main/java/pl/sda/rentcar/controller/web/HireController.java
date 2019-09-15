@@ -2,6 +2,7 @@ package pl.sda.rentcar.controller.web;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +24,7 @@ public class HireController {
         return service.getAll();
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/create")
     ModelAndView createCarView() {
         ModelAndView modelAndView = new ModelAndView("/createhire.html");

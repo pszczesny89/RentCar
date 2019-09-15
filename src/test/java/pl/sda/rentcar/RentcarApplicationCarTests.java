@@ -2,14 +2,11 @@ package pl.sda.rentcar;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.*;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import pl.sda.rentcar.controller.CarController;
+import pl.sda.rentcar.controller.web.CarController;
 import pl.sda.rentcar.dtos.CarDTO;
 import pl.sda.rentcar.repository.CarRepository;
 import pl.sda.rentcar.service.CarService;

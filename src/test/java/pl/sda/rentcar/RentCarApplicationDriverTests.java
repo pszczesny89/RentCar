@@ -9,7 +9,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import pl.sda.rentcar.controller.DriverController;
+import pl.sda.rentcar.controller.web.DriverController;
 import pl.sda.rentcar.dtos.DriverDTO;
 import pl.sda.rentcar.entity.Driver;
 import pl.sda.rentcar.repository.DriverRepository;
