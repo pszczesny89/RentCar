@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.rentcar.dtos.CarDTO;
 import pl.sda.rentcar.service.CarService;
-
-import java.util.Date;
+import pl.sda.rentcar.service.finder.CarFinder;
 
 @Controller
 @RequestMapping("/cars")
 @RequiredArgsConstructor
 public class CarListController {
-    //private final static Logger LOGGER = LoggerFactory.getLogger(CarListController.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(CarListController.class);
     private final CarService carService;
+    private final CarFinder finder;
 
     @RequestMapping("/list")
     ModelAndView getCars() {
@@ -34,8 +34,8 @@ public class CarListController {
     }
 
     @PostMapping("/create")
-    String createCar(CarDTO dto) {
-        carService.add(dto);
+    String createCar(@ModelAttribute CarDTO dto) {
+        carService.addOrUpdate(dto);
         return "redirect:/";
     }
 
@@ -44,5 +44,24 @@ public class CarListController {
         ModelAndView modelAndView = new ModelAndView("/car.html");
         modelAndView.addObject("car", carService.getOne(id));
         return modelAndView;
+    }
+
+    @GetMapping("/delete")
+    String deleteCar(@RequestParam Long id) {
+        carService.removeCar(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/edit")
+    ModelAndView editCar(@RequestParam Long id) {
+        ModelAndView modelAndView = new ModelAndView("createcar.html");
+        modelAndView.addObject("car", finder.findById(id));
+        return modelAndView;
+    }
+
+    @GetMapping("/return")
+    String returnCar(@RequestParam Long id) {
+        carService.returnCar(id);
+        return "redirect:/";
     }
 }

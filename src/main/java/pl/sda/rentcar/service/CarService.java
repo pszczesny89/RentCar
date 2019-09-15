@@ -5,9 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.rentcar.dtos.CarDTO;
 import pl.sda.rentcar.entity.CarEntity;
+import pl.sda.rentcar.exceptions.HireDTOException;
 import pl.sda.rentcar.repository.CarRepository;
 
 import javax.transaction.Transactional;
+import java.awt.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,16 +23,31 @@ public class CarService {
         this.repository = repository;
     }
 
-    public CarDTO add(CarDTO carDTO) {
-        CarEntity entity = mapToEntity(carDTO);
-        repository.save(entity);
-        return mapToDTO(entity);
+    public void addOrUpdate(CarDTO carDTO) {
+            CarEntity entity = CarEntity.builder()
+                    .id(carDTO.getId())
+                    .brand(carDTO.getBrand())
+                    .model(carDTO.getModel())
+                    .registration(carDTO.getRegistration())
+                    .mileage(carDTO.getMileage())
+                    .price(carDTO.getPrice())
+                    .isAvailable(carDTO.isAvailable())
+                    .build();
+            repository.save(entity);
+    }
+
+    public boolean validate(CarDTO dto) {
+        return dto.getBrand() != null && dto.getModel() != null && dto.getRegistration() != null && dto.getMileage() != null && dto.getPrice() != null;
+    }
+
+    public void returnCar(Long id) {
+        repository.findById(id).ifPresent(e->e.setAvailable(true));
     }
 
     public List<CarDTO> getAll() {
         return repository.findAll()
                 .stream()
-                .map(e -> new CarDTO(e.getId(), e.getBrand(), e.getModel(), e.getRegistration(), e.getMileage(), e.isAvailable()))
+                .map(e -> new CarDTO(e.getId(), e.getBrand(), e.getModel(), e.getRegistration(), e.getMileage(), e.getPrice(), e.isAvailable()))
                 .collect(Collectors.toList());
     }
 
@@ -49,6 +66,7 @@ public class CarService {
                 carEntity.getModel(),
                 carEntity.getRegistration(),
                 carEntity.getMileage(),
+                carEntity.getPrice(),
                 carEntity.isAvailable()
         );
     }
@@ -60,6 +78,7 @@ public class CarService {
                 carDTO.getModel(),
                 carDTO.getRegistration(),
                 carDTO.getMileage(),
+                carDTO.getPrice(),
                 carDTO.isAvailable()
         );
     }
