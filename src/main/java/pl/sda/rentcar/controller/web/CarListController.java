@@ -58,10 +58,4 @@ public class CarListController {
         modelAndView.addObject("car", finder.findById(id));
         return modelAndView;
     }
-
-    @GetMapping("/return")
-    String returnCar(@RequestParam Long id) {
-        carService.returnCar(id);
-        return "redirect:/";
-    }
 }

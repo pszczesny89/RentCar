@@ -30,7 +30,5 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.17'
-    compile group: 'org.hibernate', name: 'hibernate-java8', version: '5.4.4.Final'
 }
