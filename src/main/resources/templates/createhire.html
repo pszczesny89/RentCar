@@ -9,13 +9,21 @@
     <h3>Add a new hire!</h3>
     <form th:action="@{/hire/create}" method="POST" th:object="${hire}">
         <table>
-            <tr><td></td><td><input type="hidden" id="id" name="id" th:value="${car.id}"/></td></tr>
-            <tr><td>Car ID:</td><td><input type="text" id="carId" name="carId" th:value="${hire.carId}"/></td></tr>
-            <tr><td>Driver ID:</td><td><input type="text" id="driverId" name="driverId" th:value="${hire.driverId}"/></td></tr>
+            <tr><td></td><td><input type="hidden" id="id" name="id" th:value="${hire.id}"/></td></tr>
+            <tr><td>Car registration:</td><td>
+                <select th:field="*{carId}">
+                    <option th:each="car : ${cars}" th:value="${car.id}" th:text="${car.registration}"></option>
+                </select>
+            </td></tr>
+            <tr><td>Driver Last Name:</td><td>
+                <select th:field="*{driverId}">
+                    <option th:each="driver : ${drivers}" th:value="${driver.id}" th:text="${driver.surname}"></option>
+                </select>
+            </td></tr>
             <tr><td>Date of rental:</td><td><input type="date" id="hireDate" name="hireDate" th:value="${hire.hireDate}"/></td></tr>
             <tr><td>Date of return:</td><td><input type="date" id="returnDate" name="returnDate" th:value="${hire.returnDate}"/></td></tr>
             <tr><td>Expected mileage:</td><td><input type="text" id="mileage" name="mileage" th:value="${hire.mileage}"/></td></tr>
-            <tr><td></td><td> <button type="submit">Approve</button></td></tr>
+            <tr><td></td><td> <button type="submit">Apply</button></td></tr>
         </table>
     </form>
     </br>

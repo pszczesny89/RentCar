@@ -30,26 +30,28 @@ public class HireService {
         this.driverRepository = driverRepository;
     }
 
-    public HireDTO add(HireDTO dto) {
-        if(validate(dto)) {
-            HireEntity entity = mapToEntity(dto);
+    public void add(HireDTO dto) {
+        /*if(validate(dto)) {*/
+            HireEntity entity = HireEntity.builder()
+                    .id(dto.getId())
+                    .carId(dto.getCarId())
+                    .driverId(dto.getDriverId())
+                    .hireDate(dto.getHireDate())
+                    .returnDate(dto.getReturnDate())
+                    .mileage(dto.getMileage())
+                    .build();
+            carRepository.findById(dto.getCarId()).ifPresent(e->e.setAvailable(false));
             repository.save(entity);
-            return mapToDTO(entity);
-        } else {
+
+        /*} else {
             throw new HireDTOException();
-        }
+        }*/
     }
 
     private boolean validate(HireDTO dto) {
-        if(dto.getCarId() == null) {
+        if (dto.getHireDate().isBefore(LocalDate.now())) {
             return false;
-        } else if (dto.getHireDate().isBefore(LocalDate.now())) {
-            return false;
-        } else if (dto.getHireDate().isAfter(dto.getReturnDate())) {
-            return false;
-        } else if (!carRepository.findById(dto.getCarId()).isPresent()) {
-            return false;
-        } else return driverRepository.findById(dto.getDriverId()).isPresent();
+        } else return dto.getHireDate().isAfter(dto.getReturnDate());
      }
 
     public List<HireDTO> getAll() {
@@ -64,7 +66,9 @@ public class HireService {
     }
 
     public void removeHire(Long id) {
-        repository.deleteById(id);
+        carRepository.getById(id).setAvailable(true);
+        HireEntity entity = repository.findAll().stream().filter(e->e.getCarId().equals(id)).findFirst().get();
+        repository.deleteById(entity.getId());
     }
 
     public Integer getPrice(HireDTO dto) {

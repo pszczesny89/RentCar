@@ -9,7 +9,7 @@
     <h3>Add a new car to our database!</h3>
     <form th:action="@{/cars/create}" method="POST" th:object="${car}">
         <table>
-            <!--            <tr><td></td><td><input type="hidden" id="id" name="id" th:value="${car.id}"/></td></tr>-->
+            <tr><td></td><td><input type="hidden" id="id" name="id" th:value="${car.id}"/></td></tr>
             <tr><td>Brand:</td><td><input type="text" id="brand" name="brand" th:value="${car.brand}"/></td></tr>
             <tr><td>Model:</td><td><input type="text" id="model" name="model" th:value="${car.model}"/></td></tr>
             <tr><td>Registration:</td><td><input type="text" id="registration" name="registration" th:value="${car.registration}"/></td></tr>

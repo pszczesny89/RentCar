@@ -2,9 +2,11 @@ package pl.sda.rentcar.entity;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import pl.sda.rentcar.dtos.HireDTO;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +18,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class HireEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +28,15 @@ public class HireEntity {
     private LocalDate hireDate;
     private LocalDate returnDate;
     private int mileage;
+
+    public HireDTO toDto() {
+        return HireDTO.builder()
+                .id(id)
+                .carId(carId)
+                .driverId(driverId)
+                .hireDate(hireDate)
+                .returnDate(returnDate)
+                .mileage(mileage)
+                .build();
+    }
 }

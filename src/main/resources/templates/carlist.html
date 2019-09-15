@@ -27,7 +27,7 @@
 <!--                <td><span th:text="${car.mileage}"/></td>-->
                 <td><span th:text="${car.available}"/></td>
                 <td th:switch="${car.available}? ${true} : ${false}">
-                    <a th:case="${false}" href="/hire/return"><input class="btn" type="button" value="Return a car"></a>
+                    <a th:case="${false}" th:href="@{/hire/return?id=} + ${car.id}"><input class="btn" type="button" value="Return a car"></a>
                     <a th:case="${true}" href="/hire/create"><input class="btn" type="button" value="Rent a car"></a>
                 </td>
                 <td><a th:href="@{/cars/delete?id=} + ${car.id}">Delete</a></td>
