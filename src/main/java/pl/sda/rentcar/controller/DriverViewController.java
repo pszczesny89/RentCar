@@ -1,6 +1,7 @@
 package pl.sda.rentcar.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,9 +37,9 @@ public class DriverViewController {
 
         return "redirect:/driver";
     }
-
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/edit")
-    ModelAndView editDoctor(@RequestParam Long id) {
+    ModelAndView editDriver(@RequestParam Long id) {
         ModelAndView modelAndView = new ModelAndView("createDriver.html");
         modelAndView.addObject("driver", driverFinder.findById(id));
         return modelAndView;

@@ -29,6 +29,8 @@ public class Driver {
                 .id(id)
                 .name(name)
                 .surname(surname)
+                .email(email)
+                .password(password)
                 .build();
     }
 }

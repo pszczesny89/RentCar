@@ -10,14 +10,15 @@
 <form th:action="@{/driver/create}" method="POST" th:object="${driver}">
     <table>
         <tr>Form to create a new driver:</tr>
-        <!--<tr><td></td><td><input type="hidden" id="id" name="id" th:value="${driver.id}"/></td></tr>-->
+        <tr><td></td><td><input type="hidden" id="id" name="id" th:value="${driver.id}"/></td></tr>
         <tr><td>Name:</td><td><input type="text" id="name" name="name" th:value="${driver.name}"/></td></tr>
         <tr><td>Last Name:</td><td><input type="text" id="surname" name="surname" th:value="${driver.surname}"/></td></tr>
         <tr><td>E-mail:</td><td><input type="text" id="email" name="email" th:value="${driver.email}"/></td></tr>
         <tr><td>Password:</td><td><input type="password" id="pasword" name="password" th:value="${driver.password}"/></td></tr>
         </td></tr>
 
-        <tr><td></td><td> <button type="submit">Create driver</button></td></tr>
+        <tr><td></td><td> <button type="submit">Zatwierdź</button></td></tr>
+
     </table>
     <a href="/"><input type="button" value="Come back to our main page"></a>
 </form>
