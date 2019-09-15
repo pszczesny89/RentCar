@@ -12,7 +12,6 @@ import java.util.List;
 
 
 @RequestMapping("/driver")
-@RestController
 public class DriverController {
 
 

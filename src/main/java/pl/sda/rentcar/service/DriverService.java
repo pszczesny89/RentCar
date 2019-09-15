@@ -39,13 +39,13 @@ public class DriverService {
 
     }
 
-    private Driver toDTO(Driver entity) {
+    private Driver toDTO(Driver driver) {
         return Driver.builder()
-                .id(entity.getId())
-                .name(entity.getName())
-                .surname(entity.getSurname())
-                .email(entity.getEmail())
-                .password(entity.getPassword())
+                .id(driver.getId())
+                .name(driver.getName())
+                .surname(driver.getSurname())
+                .email(driver.getEmail())
+                .password(driver.getPassword())
                 .build();
     }
 
