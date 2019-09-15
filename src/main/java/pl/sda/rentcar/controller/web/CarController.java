@@ -23,8 +23,8 @@ public class CarController {
     }
 
     @PutMapping()
-    public CarDTO add(@RequestBody CarDTO dto) {
-        return service.add(dto);
+    public void add(@RequestBody CarDTO dto) {
+        service.addOrUpdate(dto);
     }
 
     @GetMapping()
