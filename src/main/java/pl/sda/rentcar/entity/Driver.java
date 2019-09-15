@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.sda.rentcar.dtos.DriverDTO;
 
 import javax.persistence.*;
 
@@ -22,4 +23,14 @@ public class Driver {
     private String surname;
     private String email;
     private String password;
+
+    public DriverDTO toDTO() {
+        return DriverDTO.builder()
+                .id(id)
+                .name(name)
+                .surname(surname)
+                .email(email)
+                .password(password)
+                .build();
+    }
 }

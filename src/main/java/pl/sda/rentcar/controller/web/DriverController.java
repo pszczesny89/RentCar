@@ -1,19 +1,28 @@
-package pl.sda.rentcar.controller;
+package pl.sda.rentcar.controller.web;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.rentcar.dtos.DriverDTO;
 import pl.sda.rentcar.entity.Driver;
+import pl.sda.rentcar.repository.DriverRepository;
 import pl.sda.rentcar.service.DriverService;
 
 import java.util.List;
 
 
 @RequestMapping("/driver")
-@RequiredArgsConstructor
 public class DriverController {
 
+
     private final DriverService driverService;
+    private final DriverRepository driverRepository;
+
+    @Autowired
+    public DriverController(DriverService driverService, DriverRepository driverRepository) {
+        this.driverService = driverService;
+        this.driverRepository = driverRepository;
+    }
 
     @PostMapping
     public Driver add(@RequestBody DriverDTO dto) {return driverService.save(dto);}

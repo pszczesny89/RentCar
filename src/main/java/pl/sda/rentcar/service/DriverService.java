@@ -25,13 +25,27 @@ public class DriverService {
         return toDTO(entity);
     }
 
-    private Driver toDTO(Driver entity) {
+    @Transactional
+    public void createOrUpdate(DriverDTO dto){
+    Driver driver = Driver.builder()
+            .id(dto.getId())
+            .name(dto.getName())
+            .surname(dto.getSurname())
+            .email(dto.getEmail())
+            .password(dto.getPassword())
+            .build();
+
+    driverRepository.save(driver);
+
+    }
+
+    private Driver toDTO(Driver driver) {
         return Driver.builder()
-                .id(entity.getId())
-                .name(entity.getName())
-                .surname(entity.getSurname())
-                .email(entity.getEmail())
-                .password(entity.getPassword())
+                .id(driver.getId())
+                .name(driver.getName())
+                .surname(driver.getSurname())
+                .email(driver.getEmail())
+                .password(driver.getPassword())
                 .build();
     }
 

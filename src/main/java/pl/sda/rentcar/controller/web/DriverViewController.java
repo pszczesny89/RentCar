@@ -1,10 +1,12 @@
-package pl.sda.rentcar.controller;
+package pl.sda.rentcar.controller.web;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.rentcar.dtos.DriverDTO;
+import pl.sda.rentcar.service.DriverFinder;
 import pl.sda.rentcar.service.DriverService;
 
 @Controller
@@ -13,6 +15,7 @@ import pl.sda.rentcar.service.DriverService;
 public class DriverViewController {
 
     private final DriverService driverService;
+    private final DriverFinder driverFinder;
 
     @RequestMapping
     ModelAndView driverView(){
@@ -33,6 +36,13 @@ public class DriverViewController {
         driverService.save(driver);
 
         return "redirect:/driver";
+    }
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/edit")
+    ModelAndView editDriver(@RequestParam Long id) {
+        ModelAndView modelAndView = new ModelAndView("createDriver.html");
+        modelAndView.addObject("driver", driverFinder.findById(id));
+        return modelAndView;
     }
 
     @GetMapping("/delete")
