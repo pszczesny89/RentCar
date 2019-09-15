@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>List of cars</title>
-    <link rel="stylesheet" href="style.css" type="text/css"/>
+<!--    <link rel="stylesheet" href="style.css" type="text/css"/>-->
 </head>
 <body>
     <h3>List of all our cars:</h3>
@@ -12,6 +12,7 @@
             <th>Id</th>
             <th>Brand</th>
             <th>Model</th>
+            <th>Price</th>
 <!--            <th>Registration</th>
             <th>Mileage</th>-->
             <th>Availability</th>
@@ -21,13 +22,16 @@
                 <td><span th:text="${car.id}"/></td>
                 <td><span th:text="${car.brand}"/></td>
                 <td><span th:text="${car.model}"/></td>
+                <td><span th:text="${car.price}"/> PLN/day</td>
 <!--                <td><span th:text="${car.registration}"/></td>-->
 <!--                <td><span th:text="${car.mileage}"/></td>-->
                 <td><span th:text="${car.available}"/></td>
                 <td th:switch="${car.available}? ${true} : ${false}">
-                    <input th:case="${false}" class="btn" type="button" value="Return a car">
+                    <a th:case="${false}" href="/hire/return"><input class="btn" type="button" value="Return a car"></a>
                     <a th:case="${true}" href="/hire/create"><input class="btn" type="button" value="Rent a car"></a>
                 </td>
+                <td><a th:href="@{/cars/delete?id=} + ${car.id}">Delete</a></td>
+                <td><td><a th:href="@{/cars/edit?id=} + ${car.id}">Edit</a></td>
                 <td><a th:href="@{/cars/car/{id}(id=${car.id})}">Check details</a></td>
             </tr>
         </tbody>
